@@ -10,7 +10,6 @@ from sqlalchemy import ForeignKey
 from sqlalchemy import Table
 from sqlalchemy.orm import relationship
 
-
 metadata = Base.metadata
 place_amenity = Table(
     'place_amenity', metadata,
@@ -45,7 +44,6 @@ class Place(BaseModel, Base):
     price_by_night = Column(Integer, nullable=False, default=0)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
-    amenity_ids = []
     amenities = relationship('Amenity', secondary='place_amenity',
                              back_populates='place_amenities', viewonly=False)
 
@@ -54,7 +52,7 @@ class Place(BaseModel, Base):
         amenity_list = []
         from models.__init__ import storage
         for amenity in storage.all(Amenity):
-            if amenity not in self.amenity_ids:
+            if amenity in self.amenity_ids:
                 amenity_list.append(amenity)
         return amenity_list
 
