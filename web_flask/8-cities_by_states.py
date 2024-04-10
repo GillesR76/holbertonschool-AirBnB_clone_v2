@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Flask web application to display the HBNB data"""
 
 from flask import Flask, render_template, appcontext_tearing_down
 from markupsafe import escape
@@ -9,17 +9,13 @@ from models.state import State
 app = Flask(__name__)
 
 
-@app.route('/states_list/', strict_slashes=False)
-def state_list():
-    """
-    Renders a template that displays a list of states sorted by name.
-
-    Returns:
-        The rendered template with the sorted list of states.
-    """
+@app.route('/cities_by_states/', strict_slashes=False)
+def cities_by_state():
     states = storage.all(State).values()
     sorted_states = sorted(states, key=lambda state: state.name)
-    return render_template('7-states_list.html', states=sorted_states)
+    sorted_cities = {state: sorted(
+        state.cities, key=lambda city: city.name) for state in sorted_states}
+    return render_template('7-states_list.html', states=sorted_states, cities=sorted_cities)
 
 
 @app.teardown_appcontext
