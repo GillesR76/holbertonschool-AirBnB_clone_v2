@@ -15,7 +15,7 @@ def cities_by_state():
     sorted_states = sorted(states, key=lambda state: state.name)
     sorted_cities = {state: sorted(
         state.cities, key=lambda city: city.name) for state in sorted_states}
-    return render_template('7-states_list.html', states=sorted_states, cities=sorted_cities)
+    return render_template('8-cities_by_states.html', states=sorted_states, cities=sorted_cities)
 
 
 @app.teardown_appcontext
