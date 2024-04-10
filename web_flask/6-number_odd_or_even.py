@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Flask web application that defines multiple routes"""
 
 from flask import Flask, render_template
 from markupsafe import escape
