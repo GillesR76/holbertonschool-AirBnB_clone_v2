@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""Flask web application to display the HBNB data"""
+
 from flask import Flask, render_template, appcontext_tearing_down
 from markupsafe import escape
 from models import storage
