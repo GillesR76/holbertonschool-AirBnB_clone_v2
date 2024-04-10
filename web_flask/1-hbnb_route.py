@@ -1,3 +1,5 @@
+"""Flask web application that defines two routes"""
+
 from flask import Flask
 
 app = Flask(__name__)
