@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+
 from flask import Flask
 """
 creating a flask application: creates a new instance
@@ -20,6 +23,7 @@ displayed in the browser when the root URL is accessed.
 
 @app.route('/', strict_slashes=False)
 def index():
+    """new route to display Hello HBNB"""
     return 'Hello HBNB!'
 
 
