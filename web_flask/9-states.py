@@ -19,7 +19,8 @@ def state_cities(id=None):
             if id == state.id:
                 sorted_cities = {state: sorted(
                     state.cities, key=lambda city: city.name)}
-                return render_template('9-states.html', state=state, cities=sorted_cities)
+                return render_template('9-states.html', state=state,
+                                       cities=sorted_cities)
         return render_template('9-states.html', message='Not found!')
     else:
         return render_template('9-states.html', states=sorted_states)
