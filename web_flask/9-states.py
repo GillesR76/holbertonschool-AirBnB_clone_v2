@@ -22,7 +22,7 @@ def state_cities(id=None):
                 sorted_cities = {state: sorted(
                     state.cities, key=lambda city: city.name)}
                 return render_template('9-states.html', states=sorted_states, cities=sorted_cities)
-        return render_template('9-states.html', not_found=True)
+        return render_template('9-states.html', message='Not found!')
 
 
 @app.teardown_appcontext
