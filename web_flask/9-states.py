@@ -9,6 +9,17 @@ from models.state import State
 app = Flask(__name__)
 
 
+@app.teardown_appcontext
+def remove_session(exception):
+    """
+    Closes the database session after each request.
+
+    Args:
+        exception: The exception raised during the request, if any.
+    """
+    storage.close()
+
+
 @app.route('/states', strict_slashes=False)
 @app.route('/states/<id>', strict_slashes=False)
 def state_cities(id=None):
@@ -24,17 +35,6 @@ def state_cities(id=None):
         return render_template('9-states.html', message='Not found!')
     else:
         return render_template('9-states.html', states=sorted_states)
-
-
-@app.teardown_appcontext
-def remove_session(exception):
-    """
-    Closes the database session after each request.
-
-    Args:
-        exception: The exception raised during the request, if any.
-    """
-    storage.close()
 
 
 if __name__ == '__main__':
